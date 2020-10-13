@@ -1,8 +1,8 @@
 Definition of *ready*
 ==========
-*Independent
-*Negotiable
-*Valuable
-*Estimable
-*Small/specific
-*Testable
+* Independent
+* Negotiable
+* Valuable
+* Estimable
+* Small/specific
+* Testable
