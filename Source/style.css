@@ -1,0 +1,395 @@
+:root {
+    --table-border-color: rgb(199, 199, 199);
+}
+
+body {
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    background-color: rgb(225, 225, 225);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden;
+}
+
+.center {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-y {
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#main-content {
+    box-sizing: border-box;
+    padding-top: 50px;
+    transition: all 0.6s;
+    margin: auto;
+    max-width: 1700px;
+    background-color: rgb(235, 235, 235);
+    padding: 50px 0px 50px 0px;
+    min-height: 100vh;
+    position: relative;
+}
+
+#main-content a {
+    text-decoration: underline;
+    color: black;
+    transition: color 0.14s;
+}
+
+#main-content a:hover {
+    color: #ea2026;
+}
+
+.content-section {
+    padding: 0px 25px 25px 25px;
+}
+
+h1 {
+    font-size: 30pt;
+}
+
+h2 {
+    font-size: 22pt;
+}
+
+h3 {
+    font-size: 18pt;
+}
+
+.datatable table {
+    border: 1px solid var(--table-border-color);
+    border-collapse: separate;
+    border-left: 0;
+    border-radius: 10px;
+    border-spacing: 0px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.datatable thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    border-collapse: separate;
+}
+
+.datatable tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    background-color: rgb(244, 244, 244);
+}
+
+.datatable tr:nth-child(even) {
+    background-color: rgb(244, 244, 244);
+}
+
+.datatable th,
+.datatable td {
+    padding: 5px 4px 6px 10px;
+    text-align: left;
+    vertical-align: top;
+    border-left: 1px solid var(--table-border-color);
+}
+
+.datatable th {
+    background-color: rgb(250, 250, 250);
+}
+
+.datatable td {
+    border-top: 1px solid var(--table-border-color);
+}
+
+.datatable thead:first-child tr:first-child th:first-child,
+.datatable tbody:first-child tr:first-child td:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+.datatable thead:last-child tr:last-child th:first-child,
+.datatable tbody:last-child tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+
+.formtable input {
+    width: 100%;
+}
+
+.formtable table {
+    width: 100%;
+}
+
+.formtable tr {
+    height: 45px;
+}
+
+input[type=text] {
+    border-color: var(--table-border-color);
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1px;
+    min-height: 32px;
+    background-color: rgb(242, 242, 242);
+    padding: 3px 10px;
+    transition: background-color 0.24s, border-color 0.24s;
+    font-size: 12pt;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type=text]:hover,
+input[type=text]:focus {
+    background-color: rgb(250, 250, 250);
+}
+
+input[type=text]:focus {
+    border-color: rgb(140, 140, 140)
+}
+
+#cislo-field {
+    width: 100%;
+}
+
+
+/* The container must be positioned relative: */
+
+.custom-select {
+    position: relative;
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element: */
+}
+
+.select-selected {
+    background-color: rgb(242, 242, 242);
+}
+
+
+/* Style the arrow inside the select element: */
+
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: black transparent transparent transparent;
+}
+
+
+/* Point the arrow upwards when the select box is open (active): */
+
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent black transparent;
+    top: 7px;
+}
+
+
+/* style the items (options), including the selected item: */
+
+.select-items div,
+.select-selected {
+    color: black;
+    padding: 3px 28px 3px 10px;
+    min-height: 32px;
+    font-size: 12pt;
+    border: 1px solid transparent;
+    border-color: var(--table-border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    opacity: 100%;
+    transition: background-color 0.24s, border-color 0.24s, opacity 0.24s;
+    user-select: none;
+}
+
+
+/* Style items (options): */
+
+.select-items div {
+    font-size: 12pt;
+    overflow: hidden;
+    background-color: rgb(242, 242, 242);
+    border-width: 1px 0 0 0;
+    border-radius: 0px;
+    margin-top: -1px;
+}
+
+.select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin-top: 5px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--table-border-color);
+    transition: background-color 0.24s, border-color 0.24s, opacity 0.24s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.select-items.select-hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+form {
+    width: 100%;
+}
+
+button,
+input[type=submit] {
+    border-color: var(--table-border-color);
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1px;
+    min-height: 32px;
+    background-color: rgb(242, 242, 242);
+    padding: 3px 10px;
+    transition: background-color 0.24s, border-color 0.24s;
+    font-size: 12pt;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+.submit-center {
+    text-align: center;
+    width: 100%;
+}
+
+button:hover,
+input[type=submit]:hover {
+    background-color: rgb(250, 250, 250);
+    border-color: rgb(140, 140, 140);
+}
+
+
+/* Hide the items when the select box is closed: */
+
+.select-items div:hover,
+.same-as-selected {
+    background-color: rgb(250, 250, 250);
+}
+
+.select-selected:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.select-selected.select-arrow-active {
+    background-color: rgb(250, 250, 250);
+    border-color: rgb(140, 140, 140);
+}
+
+#page-footer {
+    height: 61px;
+    padding: 0 25px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: rgb(200, 200, 200);
+    box-sizing: border-box;
+    background-color: rgb(240, 240, 240);
+}
+
+#footer-jedu {
+    max-height: 44px;
+    margin: 8px 0px 8px 15px;
+}
+
+.footer-text {
+    transform: translateY(17px);
+}
+
+.account-info {
+    margin: 35px 25px;
+}
+
+.name-row {
+    height: 100px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.user-img img {
+    max-height: 100px;
+}
+
+.user-id {
+    margin-left: 30px;
+}
+
+.user-name {
+    height: 55px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 24pt;
+    display: block;
+}
+
+.user-role {
+    font-size: 14pt;
+    margin-left: 10px;
+    display: block;
+}
+
+.account-table {
+    margin-left: 20px;
+}
+
+.account-table tr {
+    height: 33px;
+}
+
+@media screen and (max-width: 620px) {
+    a.anchor {
+        top: -250px;
+    }
+}
