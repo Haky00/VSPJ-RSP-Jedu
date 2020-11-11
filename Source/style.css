@@ -2,6 +2,10 @@
     --table-border-color: rgb(199, 199, 199);
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body {
     padding: 0px;
     width: 100%;
@@ -10,6 +14,8 @@ body {
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
     background-color: rgb(225, 225, 225);
+    background-image: url(bg.png);
+    background-position: center top;
 }
 
 html {
@@ -92,6 +98,14 @@ h2 {
 h3 {
     font-size: 18pt;
 }
+
+ul {
+    padding: 0;
+    list-style-type: square;
+    list-style-position: inside;
+}
+
+li {}
 
 .datatable table {
     border: 1px solid var(--table-border-color);
@@ -386,6 +400,26 @@ input[type=submit]:hover {
 
 .account-table tr {
     height: 33px;
+}
+
+.archiv-rocnik h4 {
+    margin: 1px 0;
+    width: 42px;
+    display: inline-block;
+}
+
+.archiv-rocnik h5 {
+    margin: 0;
+    width: 75px;
+    display: inline-block;
+    font-weight: normal;
+}
+
+.archiv-rocnik a {
+    margin: 0;
+    width: 56px;
+    display: inline-block;
+    font-weight: normal;
 }
 
 @media screen and (max-width: 620px) {
