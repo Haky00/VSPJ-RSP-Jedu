@@ -24,6 +24,7 @@ html {
 
 img {
     vertical-align: bottom;
+    box-sizing: border-box;
 }
 
 a {
@@ -105,8 +106,6 @@ ul {
     list-style-position: inside;
 }
 
-li {}
-
 .datatable table {
     border: 1px solid var(--table-border-color);
     border-collapse: separate;
@@ -137,7 +136,7 @@ li {}
 
 .datatable th,
 .datatable td {
-    padding: 5px 4px 6px 10px;
+    padding: 5px 8px 6px 8px;
     text-align: left;
     vertical-align: top;
     border-left: 1px solid var(--table-border-color);
@@ -159,6 +158,75 @@ li {}
 .datatable thead:last-child tr:last-child th:first-child,
 .datatable tbody:last-child tr:last-child td:first-child {
     border-radius: 0 0 0 10px;
+}
+
+.datatable .button-cell {
+    padding: 0;
+    min-width: 39px;
+    width: 39px;
+}
+
+.datatable .more-button {
+    text-align: center;
+    height: 36px;
+}
+
+.datatable .more-button .more-button-link {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}
+
+.datatable .more-button .more-button-link:hover {
+    background-color: rgb(251, 251, 251);
+    cursor: pointer;
+}
+
+.datatable .more-button img {
+    max-height: 20px;
+    max-width: 20px;
+    pointer-events: none;
+}
+
+.dropdown-content {
+    text-align: left;
+    position: absolute;
+    background-color: rgb(244, 244, 244);
+    min-width: 160px;
+    z-index: 1;
+    transform: translate(-100%, 0px) translateX(40px) scaleY(0);
+    transform-origin: 50% 0%;
+    box-sizing: border-box;
+    border-color: var(--table-border-color);
+    border-width: 1px;
+    border-radius: 10px;
+    border-style: solid;
+    overflow: hidden;
+    opacity: 0;
+    transition: transform 0.24s, opacity 0.14s;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a {
+    color: black;
+    background-color: rgb(244, 244, 244);
+    padding: 8px 12px;
+    text-decoration: none !important;
+    display: block;
+    transition: background-color 0.14s, color 0.14s !important;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(251, 251, 251);
+}
+
+.dropdown-show {
+    transform: translate(-100%, 8px) translateX(40px) scaleY(1);
+    opacity: 1;
 }
 
 .formtable input {
@@ -262,7 +330,7 @@ input[type=email]:focus {
     width: 100%;
     box-sizing: border-box;
     opacity: 100%;
-    transition: background-color 0.24s, border-color 0.24s, opacity 0.24s;
+    transition: background-color 0.14s, border-color 0.14s, opacity 0.14s;
     user-select: none;
 }
 
@@ -276,6 +344,8 @@ input[type=email]:focus {
     border-width: 1px 0 0 0;
     border-radius: 0px;
     margin-top: -1px;
+    min-height: 40px;
+    padding: 7px 28px 7px 10px;
 }
 
 .select-items {
@@ -284,18 +354,19 @@ input[type=email]:focus {
     left: 0;
     right: 0;
     z-index: 99;
-    margin-top: 5px;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--table-border-color);
-    transition: background-color 0.24s, border-color 0.24s, opacity 0.24s;
+    transition: background-color 0.24s, border-color 0.24s, opacity 0.14s, transform 0.24s;
+    transform: translateY(5px) scaleY(1);
+    transform-origin: 50% 0%;
     opacity: 1;
-    visibility: visible;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
 }
 
 .select-items.select-hide {
     opacity: 0;
-    visibility: hidden;
+    transform: translateY(0px) scaleY(0);
 }
 
 form {
@@ -303,20 +374,31 @@ form {
 }
 
 button,
+.button,
 input[type=submit] {
     border-color: var(--table-border-color);
     border-radius: 12px;
     border-style: solid;
     border-width: 1px;
-    min-height: 32px;
+    min-height: 40px;
+    min-width: 180px;
     background-color: rgb(242, 242, 242);
-    padding: 3px 10px;
-    transition: background-color 0.24s, border-color 0.24s;
+    padding: 3px 16px;
+    transition: background-color 0.24s, border-color 0.24s, color 0.24s !important;
     font-size: 12pt;
     box-sizing: border-box;
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor: pointer;
-    margin: 0px 0px;
+    margin: 4px 2px;
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+.button-text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
 }
 
 .submit-center {
@@ -325,9 +407,11 @@ input[type=submit] {
 }
 
 button:hover,
+.button:hover,
 input[type=submit]:hover {
     background-color: rgb(250, 250, 250);
     border-color: rgb(140, 140, 140);
+    color: black !important;
 }
 
 #error-msg,
@@ -414,9 +498,12 @@ input[type=submit]:hover {
 }
 
 .name-row {
-    height: 100px;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.user-img {
+    display: inline-block;
 }
 
 .user-img img {
@@ -424,12 +511,14 @@ input[type=submit]:hover {
 }
 
 .user-id {
+    display: inline-block;
+    vertical-align: top;
     margin-left: 30px;
 }
 
 .user-name {
-    height: 55px;
-    line-height: 80px;
+    margin-top: 15px;
+    line-height: 40px;
     text-align: center;
     font-size: 24pt;
     display: block;
@@ -445,8 +534,23 @@ input[type=submit]:hover {
     margin-left: 20px;
 }
 
+.account-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
 .account-table tr {
-    height: 33px;
+    height: 50px;
+}
+
+.account-table td {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: var(--table-border-color);
+}
+
+.account-table tr:last-child td {
+    border-width: 0;
 }
 
 .archiv-rocnik h4 {
@@ -469,8 +573,39 @@ input[type=submit]:hover {
     font-weight: normal;
 }
 
+.confirm,
+.result {
+    margin: 40px 10px 35px 10px;
+    text-align: center;
+    font-size: 16pt;
+}
+
 @media screen and (max-width: 620px) {
     a.anchor {
         top: -250px;
+    }
+    .user-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .user-id {
+        display: block;
+        margin-left: 0;
+    }
+    .user-name {
+        font-size: 20pt;
+    }
+    .user-role {
+        text-align: center;
+        font-size: 12pt;
+        margin: 0;
+    }
+    .account-info {
+        margin: 25px 0px;
+    }
+    .account-table {
+        margin-left: 0;
     }
 }

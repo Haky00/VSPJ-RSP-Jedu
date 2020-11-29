@@ -61,12 +61,12 @@
                     }
                     $menu = $menu . "
                     <div class='menu-separator left'></div>
-                    <a href='ucet.php' class='menu-item menu-element menu-btn left'>
-                    <div class='menu-link center'>Můj účet</div>
+                    <a href='agenda.php' class='menu-item menu-element menu-btn left'>
+                    <div class='menu-link center'>Moje agenda</div>
                     </a>
                     <div class='menu-separator left'></div>
-                    <a href='components/logout.php' class='menu-item menu-element menu-btn left'>
-                    <div class='menu-link center'>Odhlásit se</div>
+                    <a href='ucet.php' class='menu-item menu-element menu-btn left'>
+                    <div class='menu-link center'>Můj účet</div>
                     </a>
                     <div class='menu-separator left'></div>
 

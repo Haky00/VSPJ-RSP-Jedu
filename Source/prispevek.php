@@ -34,7 +34,7 @@
                                     <?php
 
                                     require('components/connect.php');
-                                    $cisla_query = "SELECT * FROM Cislo";
+                                    $cisla_query = "SELECT * FROM cislo";
                                     $result = mysqli_query($db_connection, $cisla_query);
                                     while ($cislo = mysqli_fetch_assoc($result))
                                     {

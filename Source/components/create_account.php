@@ -11,7 +11,7 @@ $opravneni = $_POST['opravneni'];
 $tel = $_POST['tel'];
 $return_address = $_POST['return_address'];
 
-$check_login = "SELECT COUNT(*) as total FROM Uzivatel WHERE uzivatel_login = '{$login}'";
+$check_login = "SELECT COUNT(*) as total FROM uzivatel WHERE uzivatel_login = '{$login}'";
 $result = mysqli_query($db_connection, $check_login);
 $data = mysqli_fetch_assoc($result);
 if ($data['total'] > 0) {
@@ -21,7 +21,7 @@ if ($data['total'] > 0) {
     return;
 }
 
-$check_email = "SELECT COUNT(*) as total FROM Uzivatel WHERE uzivatel_email = '{$email}'";
+$check_email = "SELECT COUNT(*) as total FROM uzivatel WHERE uzivatel_email = '{$email}'";
 $result = mysqli_query($db_connection, $check_email);
 $data = mysqli_fetch_assoc($result);
 if ($data['total'] > 0) {
@@ -32,7 +32,7 @@ if ($data['total'] > 0) {
 }
 
 $uzivatel_query = "
-INSERT INTO -Uzivatel(uzivatel_login, uzivatel_heslo_hash, uzivatel_jmeno, uzivatel_prijmeni, uzivatel_email, uzivatel_opravneni, uzivatel_tel) 
+INSERT INTO uzivatel(uzivatel_login, uzivatel_heslo_hash, uzivatel_jmeno, uzivatel_prijmeni, uzivatel_email, uzivatel_opravneni, uzivatel_tel) 
 VALUES ('{$login}', '".sha1($heslo)."', '{$jmeno}', '{$prijmeni}', '{$email}', '{$opravneni}', '{$tel}')
 ";
 

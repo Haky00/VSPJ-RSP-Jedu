@@ -15,17 +15,28 @@
     <div id="main-content">
 
         <?php
-        if(session_id() == "")
-        {
-        session_start();
+        if (session_id() == "") {
+            session_start();
+        }
+        if (isset($_GET["user"])) {
+            $login = $_GET["user"];
+        } else {
+            if (isset($_SESSION["logged"])) {
+                $login = $_SESSION["login"];
+            }
+            else
+            {
+                echo "Chyba při získávání informací o uživateli";
+                return;
+            }
         }
 
         require('components/connect.php');
 
-        $check_login = "SELECT * FROM Uzivatel WHERE uzivatel_login = '{$_SESSION['login']}'";
+        $check_login = "SELECT * FROM uzivatel WHERE uzivatel_login = '{$login}'";
         $result = mysqli_query($db_connection, $check_login);
         if (mysqli_num_rows($result) != 1) {
-            echo "Chyba při získávání informací o uživateli ".$check_login;
+            echo "Chyba při získávání informací o uživateli";
             mysqli_close($db_connection);
             return;
         }
@@ -36,6 +47,8 @@
         $opravneni = $data["uzivatel_opravneni"];
         $email = $data["uzivatel_email"];
         $tel = $data["uzivatel_tel"];
+        $instituce = $data["uzivatel_instituce"];
+        $adresa = $data["uzivatel_adresa"];
 
 
         echo "
@@ -43,8 +56,8 @@
         <div class='content-section'>
             <div class='account-info'>
                 <div class='name-row'>
-                    <div class='user-img left'><img src='resources/user.png'></div>
-                    <div class='user-id left'>
+                    <div class='user-img'><img src='resources/user.png'></div>
+                    <div class='user-id'>
                         <div class='user-name'>{$jmeno}</div>
                         <div class='user-role'>{$opravneni}</div>
                     </div>
@@ -52,28 +65,60 @@
                 <div class='account-table'>
                     <table>
                         <colgroup>
-                            <col style='width: 215px;' />
+                            <col style='width: 200px;' />
                             <col/>
                         </colgroup>
                         <tr>
-                            <td>Email:</td>
+                            <td>Login</td>
+                            <td>{$login}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
                             <td>{$email}</td>
                         </tr>
                         <tr>
-                            <td>Telefonní číslo:</td>
+                            <td>Telefonní číslo</td>
                             <td>{$tel}</td>
+                        </tr>
+                        <tr>
+                            <td>Instituce</td>
+                            <td>{$instituce}</td>
+                        </tr>
+                        <tr>
+                            <td>Adresa</td>
+                            <td>{$adresa}</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
 
+        <div class='submit-center'>
         ";
-
+        if($login == $_SESSION["login"] || $_SESSION["opravneni"] == "Admin")
+        {
+            echo "
+            <a class='button' href='#'>
+            <div class='button-text-center'>Upravit profil</div>
+            </a>";
+        }
+        if($_SESSION["opravneni"] == "Admin" && $opravneni != "Admin")
+        {
+            echo "
+            <a class='button' href='confirm.php?msg=Opravdu chcete smazat účet {$login}?&yes=components/delete_account.php?user=".$login."&no=".urlencode($_SERVER['REQUEST_URI'])."'>
+            <div class='button-text-center'>Smazat profil</div>
+            </a>";
+        }
+        if($login == $_SESSION["login"])
+        {
+            echo "
+            <a class='button' href='confirm.php?msg=Opravdu se chcete odhlásit?&yes=components/logout.php&no=".urlencode($_SERVER['REQUEST_URI'])."'>
+            <div class='button-text-center'>Odhlásit se</div>
+            </a>";
+        }
+        echo "</div>";
+        require("components/footer.php");
         ?>
-
-        <?php require("components/footer.php"); ?>
-
     </div>
 </body>
 
