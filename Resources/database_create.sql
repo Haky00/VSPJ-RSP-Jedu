@@ -1,4 +1,4 @@
-CREATE TABLE Uzivatel (
+CREATE TABLE uzivatel (
     uzivatel_login VARCHAR(16),
     uzivatel_jmeno VARCHAR(100) NOT NULL,
     uzivatel_prijmeni VARCHAR(100) NOT NULL,
@@ -10,12 +10,12 @@ CREATE TABLE Uzivatel (
     uzivatel_adresa VARCHAR(100),
     PRIMARY KEY (uzivatel_login)
 );
-CREATE TABLE Cislo (
+CREATE TABLE cislo (
     cislo_id SERIAL,
     cislo_nazev VARCHAR(200) NOT NULL,
     PRIMARY KEY (cislo_id)
 );
-CREATE TABLE Prispevek(
+CREATE TABLE prispevek(
     prispevek_id SERIAL,
     prispevek_autor VARCHAR(16) NOT NULL REFERENCES Uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
     prispevek_spoluautori TEXT,
@@ -29,9 +29,10 @@ CREATE TABLE Prispevek(
     ) NOT NULL,
     prispevek_datum_vlozeni DATE NOT NULL,
     prispevek_tematicke_cislo INT REFERENCES Cisla(cislo_id) ON DELETE SET NULL,
+    prispevek_zmena DATETIME NOT NULL,
     PRIMARY KEY (prispevek_id)
 );
-CREATE TABLE Recenze(
+CREATE TABLE recenze(
     recenze_id SERIAL,
     recenze_prispevek INT NOT NULL REFERENCES Prispevek(prispevek_id) ON DELETE CASCADE ON UPDATE CASCADE,
     recenze_redaktor VARCHAR(16) NOT NULL REFERENCES Uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -54,7 +55,7 @@ CREATE TABLE Recenze(
     ),
     PRIMARY KEY (recenze_id)
 );
-CREATE TABLE Text(
+CREATE TABLE text(
     text_id SERIAL,
     text_prispevek INT NOT NULL REFERENCES Prispevek(prispevek_id) ON DELETE CASCADE ON UPDATE CASCADE,
     text_datum_nahrani DATE NOT NULL,
