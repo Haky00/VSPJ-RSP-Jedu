@@ -132,7 +132,8 @@
         transition: max-height 0.6s;
         max-height: 0;
         height: auto;
-        background-color: rgb(231, 231, 231);
+        background-color: rgb(243, 243, 243);
+        box-shadow: 0px 1px rgb(200, 200, 200);
         overflow: hidden;
     }
     .menu-show {

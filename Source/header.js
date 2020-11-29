@@ -1,6 +1,7 @@
 function toggleMenu() {
     var menu = document.getElementById("menu-pages");
     var content = document.getElementById("main-content");
+    var menuItems = document.querySelectorAll("#menu-pages a").length;
     if (menu.style.maxHeight != 0 && menu.style.maxHeight != "0px") {
         window.setTimeout(function() {
             menu.style.maxHeight = 0;
@@ -8,8 +9,8 @@ function toggleMenu() {
         }, 1);
     } else {
         window.setTimeout(function() {
-            menu.style.maxHeight = "200px";
-            content.style.paddingTop = "250px";
+            menu.style.maxHeight = (menuItems * 50) + "px";
+            content.style.paddingTop = ((menuItems + 1) * 50) + "px";
         }, 1);
     }
 }

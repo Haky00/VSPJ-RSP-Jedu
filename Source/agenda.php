@@ -4,60 +4,13 @@
 
 <head>
 
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="icon.png" />
-    <title>Logos Polytechnikos</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="headerStyle.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="header.js"></script>
+    <?php require("components/common_head.php"); ?>
 
 </head>
 
 <body>
 
-    <div id="menu">
-
-        <div id="menu-content">
-
-            <div class="center">
-                <a href="index.html" class="menu-item menu-element left">
-                    <svg class="menu-link center" width="1365.333" height="1098.667" viewBox="0 0 1024 824">
-                        <path d="M32 412v310h960V102H32v310zm450 0v250H92V162h390v250zm450 0v250H542V162h390v250zM152 269v30h270v-60H152v30zm0 143v30h270v-60H152v30zm0 143v30h270v-60H152v30zm450-286v30h270v-60H602v30zm0 143v30h270v-60H602v30zm0 143v30h210v-60H602v30z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <div class="right menu-show">
-
-                <div class="menu-show-img right">
-                    <a onclick="toggleMenu()" class="menu-item menu-element right">
-                        <svg class="menu-link center" width="248" height="245.333" viewBox="0 0 186 184">
-                            <path d="M25 38v13h135V25H25v13zm0 54v13h135V79H25v13zm0 54v13h135v-26H25v13z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="right" id="menu-pages">
-                <div class="menu-separator left"></div>
-                <a href="prispevek.html" class="menu-item menu-element menu-btn left">
-                    <div class="menu-link center">Nový příspěvek</div>
-                </a>
-                <div class="menu-separator left"></div>
-                <a href="agenda.html" class="menu-item menu-element menu-btn left">
-                    <div class="menu-link center">Agenda</div>
-                </a>
-                <div class="menu-separator left"></div>
-                <a href="ucet.html" class="menu-item menu-element menu-btn left">
-                    <div class="menu-link center">Můj účet</div>
-                </a>
-                <div class="menu-separator left"></div>
-            </div>
-        </div>
-
-    </div>
+    <?php require("components/menu.php"); ?>
 
     <div id="main-content">
         <div class="content-section">
@@ -156,10 +109,9 @@
                 </table>
             </div>
         </div>
-        <div id="page-footer">
-            <div class="right"><img src="jedu.png" id="footer-jedu" /></div>
-            <div class="right footer-text">Vytvořeno týmem Jedu</div>
-        </div>
+
+        <?php require("components/footer.php"); ?>
+
     </div>
 
 </body>
