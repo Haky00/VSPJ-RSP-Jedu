@@ -2,6 +2,11 @@
     --table-border-color: rgb(199, 199, 199);
 }
 
+::selection {
+    background-color: rgb(234, 32, 38, 0.9);
+    color: white;
+}
+
 html {
     overflow-y: scroll;
 }
@@ -16,6 +21,7 @@ body {
     background-color: rgb(225, 225, 225);
     background-image: url(resources/bg.png);
     background-position: center top;
+    caret-color: #696969;
 }
 
 html {
@@ -25,6 +31,10 @@ html {
 img {
     vertical-align: bottom;
     box-sizing: border-box;
+}
+
+form {
+    display: inline;
 }
 
 a {
@@ -255,6 +265,7 @@ input[type=email] {
     font-size: 12pt;
     box-sizing: border-box;
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: none;
 }
 
 input[type=text]:hover,
@@ -272,12 +283,13 @@ input[type=email]:focus {
     border-color: rgb(140, 140, 140)
 }
 
+input[type=file] {
+    display: none;
+}
+
 #cislo-field {
     width: 100%;
 }
-
-
-/* The container must be positioned relative: */
 
 .custom-select {
     position: relative;
@@ -285,15 +297,11 @@ input[type=email]:focus {
 
 .custom-select select {
     display: none;
-    /*hide original SELECT element: */
 }
 
 .select-selected {
     background-color: rgb(242, 242, 242);
 }
-
-
-/* Style the arrow inside the select element: */
 
 .select-selected:after {
     position: absolute;
@@ -303,19 +311,14 @@ input[type=email]:focus {
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-color: black transparent transparent transparent;
+    border-color: rgb(100, 100, 100) transparent transparent transparent;
+    transition: border-color 0.2s, top 0.3s;
 }
-
-
-/* Point the arrow upwards when the select box is open (active): */
 
 .select-selected.select-arrow-active:after {
     border-color: transparent transparent black transparent;
     top: 7px;
 }
-
-
-/* style the items (options), including the selected item: */
 
 .select-items div,
 .select-selected {
@@ -333,9 +336,6 @@ input[type=email]:focus {
     transition: background-color 0.14s, border-color 0.14s, opacity 0.14s;
     user-select: none;
 }
-
-
-/* Style items (options): */
 
 .select-items div {
     font-size: 12pt;
@@ -392,6 +392,7 @@ input[type=submit] {
     margin: 4px 2px;
     text-decoration: none !important;
     display: inline-block;
+    user-select: none;
 }
 
 .button-text-center {
@@ -411,6 +412,14 @@ button:hover,
 input[type=submit]:hover {
     background-color: rgb(250, 250, 250);
     border-color: rgb(140, 140, 140);
+    color: black !important;
+}
+
+button:focus,
+.button:active,
+input[type=submit]:focus {
+    background-color: rgb(230, 230, 230);
+    border-color: rgb(50, 50, 50);
     color: black !important;
 }
 
@@ -452,9 +461,6 @@ input[type=submit]:hover {
     display: block;
     text-align: center;
 }
-
-
-/* Hide the items when the select box is closed: */
 
 .select-items div:hover,
 .same-as-selected {
@@ -578,6 +584,50 @@ input[type=submit]:hover {
     margin: 40px 10px 35px 10px;
     text-align: center;
     font-size: 16pt;
+}
+
+.file-button,
+.file-reset-button {
+    min-height: 32px;
+}
+
+.file-button {
+    min-width: 140px;
+    margin: 0px 15px 0px 0px;
+}
+
+.file-reset-button {
+    min-width: 32px;
+    width: 32px;
+    margin: 0px 15px 0px 15px;
+    display: none;
+}
+
+.file-reset-button.show {
+    display: inline-block;
+}
+
+.file-button .button-text-center,
+.file-reset-button .button-text-center {
+    height: 24px;
+}
+
+.inline-button {
+    text-decoration: none !important;
+    user-select: none;
+    cursor: pointer;
+    min-width: 1.5em;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 5px;
+    border-radius: 30%;
+    transition: border-radius 0.34s, background-color 0.14s, color 0.14s !important;
+}
+
+.inline-button:hover {
+    border-radius: 50%;
+    background-color: #ea2026;
+    color: white !important;
 }
 
 @media screen and (max-width: 620px) {

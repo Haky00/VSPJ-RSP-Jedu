@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(!isset($_SESSION["opravneni"]) || $_SESSION["opravneni"] != "Admin")
+if(isset($_SESSION["opravneni"]) && $_SESSION["opravneni"] != "Admin")
 {
-    echo "forbidden";
+    echo "Forbidden";
     return;
 }
 
@@ -50,22 +50,31 @@ if(!isset($_SESSION["opravneni"]) || $_SESSION["opravneni"] != "Admin")
                             <col style='width: 75%;'>
                         </colgroup>
                         <tr>
-                            <td><label for='#login-field'>Login*</label></td>
-                            <td><input id='login-field' type='text' name="login" required></td>
+                            <td><label for='login-field'>Login*</label></td>
+                            <td><input id='login-field' type='text' name="login" required autofocus></td>
                         </tr>
                         <tr>
-                            <td><label for='#heslo-field'>Heslo*</label></td>
+                            <td><label for='heslo-field'>Heslo*</label></td>
                             <td><input id='heslo-field' type='password' name="heslo" required></td>
                         </tr>
                         <tr>
-                            <td><label for='#heslo-verify-field'>Heslo znovu*</label></td>
+                            <td><label for='heslo-verify-field'>Heslo znovu*</label></td>
                             <td><input id='heslo-verify-field' type='password' name="heslo-verify" required></td>
                         </tr>
                         <tr>
-                            <td><label for='#cislo-field'>Role</label></td>
+                            <td><label for='opravneni-field'>Role*</label></td>
                             <td>
+                                <?php
+                                if(!isset($_SESSION["opravneni"]) || $_SESSION["opravneni"] != "Admin")
+                                {
+                                    echo "<input id='opravneni-field' type='text' value='Autor' disabled>
+                                    <input type='hidden' name='opravneni' value='1' required>";
+                                }
+                                else
+                                {
+                                    echo "
                                 <div class='custom-select'>
-                                    <select id='cislo-field' name='opravneni' required>
+                                    <select id='opravneni-field' name='opravneni' required>
                                         <option value='1'>Autor</option>
                                         <option value='2'>Redaktor</option>
                                         <option value='3'>Recenzent</option>
@@ -74,30 +83,42 @@ if(!isset($_SESSION["opravneni"]) || $_SESSION["opravneni"] != "Admin")
                                     </select>
                                     <script src='custom_select.js'></script>
                                 </div>
+                                ";
+                                }
+                                ?>
                             </td>
                         </tr>
                         <tr></tr>
                         <tr>
-                            <td><label for='#jmeno-field'>Jméno*</label></td>
+                            <td><label for='jmeno-field'>Jméno*</label></td>
                             <td><input id='jmeno-field' type='text' name="jmeno" required></td>
                         </tr>
                         <tr>
-                            <td><label for='#prijmeni-field'>Příjmení*</label></td>
+                            <td><label for='prijmeni-field'>Příjmení*</label></td>
                             <td><input id='prijmeni-field' type='text' name="prijmeni" required></td>
                         </tr>
                         <tr>
-                            <td><label for='#email-field'>E-mail*</label></td>
-                            <td><input id='email-field' type='text' name="email" required></td>
+                            <td><label for='email-field'>E-mail*</label></td>
+                            <td><input id='email-field' type='email' name="email" required></td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td><label for='tel-field'>Telefonní číslo</label></td>
+                            <td><input id='tel-field' type='text' name="tel" maxlength="16"></td>
                         </tr>
                         <tr>
-                            <td><label for='#tel-field'>Telefonní číslo</label></td>
-                            <td><input id='tel-field' type='text' name="tel" required></td>
+                            <td><label for='instituce-field'>Instituce</label></td>
+                            <td><input id='instituce-field' type='text' name="instituce"></td>
+                        </tr>
+                        <tr>
+                            <td><label for='adresa-field'>Adresa</label></td>
+                            <td><input id='adresa-field' type='text' name="adresa"></td>
                         </tr>
                     </table>
                 </div>
                 <br />
                 <div class='submit-center'>
-                    <input type='submit' value='Přidat uživatele' />
+                    <input type='submit' value='Potvrdit' />
                 </div>
                 <input type='hidden' value="<?php require('components/current_address.php') ?>" name="return_address">
                 <div id="error-msg"><?php if(isset($_GET["error_msg"])) { echo $_GET["error_msg"]; } ?></div>

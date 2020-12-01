@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+if (!isset($_SESSION["logged"])) {
+    echo "Forbidden";
+    return;
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="cs">
@@ -98,7 +108,7 @@
         if($login == $_SESSION["login"] || $_SESSION["opravneni"] == "Admin")
         {
             echo "
-            <a class='button' href='#'>
+            <a class='button' href='upravit_ucet.php?user=".$login."'>
             <div class='button-text-center'>Upravit profil</div>
             </a>";
         }

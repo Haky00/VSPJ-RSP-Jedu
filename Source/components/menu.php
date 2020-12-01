@@ -34,6 +34,10 @@
                 {
                     $menu = "
                     <div class='menu-separator left'></div>
+                    <a href='novy_ucet.php' class='menu-item menu-element menu-btn left'>
+                    <div class='menu-link center'>Registrace</div>
+                    </a>
+                    <div class='menu-separator left'></div>
                     <a href='prihlaseni.php' class='menu-item menu-element menu-btn left'>
                     <div class='menu-link center'>Přihlásit se</div>
                     </a>
@@ -55,7 +59,7 @@
                     {
                     $menu = $menu . "
                     <div class='menu-separator left'></div>
-                    <a href='prispevek.php' class='menu-item menu-element menu-btn left'>
+                    <a href='novy_prispevek.php' class='menu-item menu-element menu-btn left'>
                     <div class='menu-link center'>Nový příspěvek</div>
                     </a>";
                     }

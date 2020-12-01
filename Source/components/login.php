@@ -20,6 +20,6 @@ if(mysqli_num_rows($result) == 1)
 }
 else
 {
-    header('Location: '.$return_address.'?error_msg=Neplatné přihlášení '. $check_login);
+    header('Location: '.$return_address.'?error_msg=Neplatné přihlášení ');
 }
 $_POST = array();
