@@ -17,7 +17,8 @@ CREATE TABLE cislo (
 );
 CREATE TABLE prispevek(
     prispevek_id SERIAL,
-    prispevek_autor VARCHAR(16) NOT NULL REFERENCES Uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
+    prispevek_nazev VARCHAR(100) NOT NULL,
+    prispevek_autor VARCHAR(16) NOT NULL,
     prispevek_spoluautori TEXT,
     prispevek_status ENUM(
         'Podáno',
@@ -28,18 +29,20 @@ CREATE TABLE prispevek(
         'Přijato'
     ) NOT NULL,
     prispevek_datum_vlozeni DATE NOT NULL,
-    prispevek_tematicke_cislo INT REFERENCES Cisla(cislo_id) ON DELETE SET NULL,
+    prispevek_tematicke_cislo BIGINT UNSIGNED,
     prispevek_zmena DATETIME NOT NULL,
+    CONSTRAINT FOREIGN KEY (prispevek_autor) REFERENCES uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (prispevek_tematicke_cislo) REFERENCES cislo(cislo_id) ON DELETE SET NULL ON UPDATE CASCADE,
     PRIMARY KEY (prispevek_id)
 );
 CREATE TABLE recenze(
     recenze_id SERIAL,
-    recenze_prispevek INT NOT NULL REFERENCES Prispevek(prispevek_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    recenze_redaktor VARCHAR(16) NOT NULL REFERENCES Uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
+    recenze_prispevek BIGINT UNSIGNED NOT NULL,
+    recenze_redaktor VARCHAR(16) NOT NULL,
     recenze_due_date DATE,
     recenze_datum_zadani DATE NOT NULL,
     recenze_datum_recenze DATE,
-    recenze_recenzant VARCHAR(16) NOT NULL REFERENCES Uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
+    recenze_recenzant VARCHAR(16) NOT NULL,
     recenze_text TEXT,
     recenze_hodnoceni_a INT CHECK (
         recenze_hodnoceni_a BETWEEN 1 AND 5
@@ -53,11 +56,15 @@ CREATE TABLE recenze(
     recenze_hodnoceni_d INT CHECK (
         recenze_hodnoceni_d BETWEEN 1 AND 5
     ),
+    CONSTRAINT FOREIGN KEY (recenze_prispevek) REFERENCES prispevek(prispevek_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (recenze_redaktor) REFERENCES uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (recenze_recenzant) REFERENCES uzivatel(uzivatel_login) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (recenze_id)
 );
 CREATE TABLE text(
     text_id SERIAL,
-    text_prispevek INT NOT NULL REFERENCES Prispevek(prispevek_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    text_prispevek BIGINT UNSIGNED NOT NULL,
     text_datum_nahrani DATE NOT NULL,
+    CONSTRAINT FOREIGN KEY (text_prispevek) REFERENCES prispevek(prispevek_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (text_id)
 );
