@@ -35,7 +35,7 @@
                     <label for="#heslo-field">Heslo</label>
                     <input id='heslo-field' type='password' name="heslo" required>
                     <div class='submit-center'>
-                        <input type='submit' value='Přidat uživatele' />
+                        <input type='submit' value='Přihlásit se' />
                     </div>
                     <input type='hidden' value="<?php require('components/current_address.php') ?>" name="return_address">
                     <div id="error-msg"><?php if (isset($_GET["error_msg"])) {

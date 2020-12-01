@@ -74,9 +74,7 @@ function closeAllSelect(elmnt) {
     for (i = 0; i < xl; i++) {
         if (arrNo.indexOf(i)) {
             eventElement = x[i];
-            setTimeout(function() {
-                eventElement.classList.add("select-hide");
-            }, 1);
+            eventElement.classList.add("select-hide");
         }
     }
 }

@@ -52,9 +52,7 @@ if ($tematicke_cislo) {
     }
     $data = mysqli_fetch_assoc($result);
     $tematicke_cislo_nazev = $data["cislo_nazev"];
-}
-else
-{
+} else {
     $tematicke_cislo_nazev = "";
 }
 
@@ -101,7 +99,7 @@ if (mysqli_num_rows($result)) {
                         </colgroup>
                         <tr>
                             <td>Autor</td>
-                            <td>{$autor_jmeno}</td>
+                            <td><a href='ucet.php?user={$autor}'>{$autor_jmeno}</a></td>
                         </tr>
                         <tr>
                             <td>Spoluautoři</td>
@@ -131,11 +129,10 @@ if (mysqli_num_rows($result)) {
         foreach ($texty as $t_id => $t_datum) {
             echo "<li>
             <a href='display.php?id={$t_id}'>{$t_datum}</a>";
-            if($_SESSION["opravneni"] == "Admin" || $autor == $_SESSION["login"])
-            {
-                echo"<a title='Smazat text' class='inline-button' href='confirm.php?msg=Opravdu chcete smazat text {$t_datum}?&yes=components/delete_text.php?id=" . $t_id . "&no=" . urlencode($_SERVER['REQUEST_URI']) . "'>✖</a>";
+            if ($_SESSION["opravneni"] == "Admin" || $autor == $_SESSION["login"]) {
+                echo "<a title='Smazat text' class='inline-button' href='confirm.php?msg=Opravdu chcete smazat text {$t_datum}?&yes=components/delete_text.php?id=" . $t_id . "&no=" . urlencode($_SERVER['REQUEST_URI']) . "'>✖</a>";
             }
-            echo"
+            echo "
             </li>";
         }
         echo "
@@ -145,7 +142,6 @@ if (mysqli_num_rows($result)) {
                     </table>
                 </div>
             </div>
-        </div>
 
         <div class='submit-center'>
         ";
@@ -168,6 +164,13 @@ if (mysqli_num_rows($result)) {
             </a>";
         }
 
+        if ($_SESSION["opravneni"] == "Redaktor") {
+            echo "
+            <a class='button' href='volba_recenzentu.php?id=" . $id . "'>
+            <div class='button-text-center'>Zvolit recenzenty</div>
+            </a>";
+        }
+
         if ($_SESSION["opravneni"] == "Admin") {
             echo "
             <a class='button' href='confirm.php?msg=Opravdu chcete smazat příspěvek {$nazev}?&yes=components/delete_paper.php?id=" . $id . "&no=" . urlencode($_SERVER['REQUEST_URI']) . "'>
@@ -175,6 +178,61 @@ if (mysqli_num_rows($result)) {
             </a>";
         }
         echo "</div>";
+
+        $check_reviews = "SELECT * FROM recenze JOIN uzivatel ON recenze_recenzant = uzivatel_login WHERE recenze_prispevek = '{$id}'";
+        $result = mysqli_query($db_connection, $check_reviews);
+        if (mysqli_num_rows($result) > 0) {
+            $i = 1;
+            $radek = mysqli_fetch_assoc($result);
+            echo "<div class='account-info'>
+            <h2>Recenze příspěvku</h2>
+            <div class='account-table'>";
+            echo "
+                <table>
+                <colgroup>
+                    <col style='width: 200px;' />
+                    <col/>
+                </colgroup>
+                <tr>
+                    <td>Datum zadání</td>
+                    <td>{$radek['recenze_datum_zadani']}</td>
+                </tr>
+                <tr>
+                    <td>Termín</td>
+                    <td>{$radek['recenze_due_date']}</td>
+                </tr>
+                </table>";
+            do {
+                echo "
+                <h3>Recenze {$i}</h3>
+                <table>
+                <colgroup>
+                    <col style='width: 200px;' />
+                    <col/>
+                </colgroup>
+                <tr>
+                    <td>Recenzent</td>
+                    <td><a href='ucet.php?user={$radek['recenze_recenzant']}'>{$radek['uzivatel_jmeno']} {$radek['uzivatel_prijmeni']}</a></td>
+                </tr>
+                <tr>
+                    <td>Hodnocení</td>
+                    <td>{$radek['recenze_hodnoceni_a']}/{$radek['recenze_hodnoceni_b']}/{$radek['recenze_hodnoceni_c']}/{$radek['recenze_hodnoceni_d']}</td>
+                </tr>
+                <tr>
+                    <td>Text</td>
+                    <td>{$radek['recenze_text']}</td>
+                </tr>
+                </table>";
+                $i = $i + 1;
+            }
+            while ($radek = mysqli_fetch_assoc($result));
+            echo "
+            </div>
+            </div>";
+        }
+        echo "
+        </div>
+        ";
         mysqli_close($db_connection);
         require("components/footer.php");
         ?>
