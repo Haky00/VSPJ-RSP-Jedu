@@ -116,6 +116,10 @@ ul {
     list-style-position: inside;
 }
 
+.datatable {
+    overflow-x: auto;
+}
+
 .datatable table {
     border: 1px solid var(--table-border-color);
     border-collapse: separate;
@@ -240,7 +244,11 @@ ul {
     opacity: 1;
 }
 
-.formtable input {
+.formtable input[type=text],
+.formtable input[type=password],
+.formtable input[type=date],
+.formtable input[type=email],
+.formtable textarea {
     width: 100%;
 }
 
@@ -252,10 +260,15 @@ ul {
     height: 45px;
 }
 
+.formtable td {
+    vertical-align: top;
+}
+
 input[type=text],
 input[type=password],
 input[type=date],
-input[type=email] {
+input[type=email],
+textarea {
     border-color: var(--table-border-color);
     border-radius: 12px;
     border-style: solid;
@@ -270,21 +283,28 @@ input[type=email] {
     outline: none;
 }
 
-input[type=text]:hover,
+.formtable textarea {
+    resize: vertical;
+}
+
+input[type=text]:hover:enabled,
 input[type=text]:focus,
-input[type=password]:hover,
+input[type=password]:hover:enabled,
 input[type=password]:focus,
-input[type=date]:hover,
+input[type=date]:hover:enabled,
 input[type=date]:focus,
-input[type=email]:hover,
-input[type=email]:focus {
+input[type=email]:hover:enabled,
+input[type=email]:focus,
+textarea:hover:enabled,
+textarea:focus {
     background-color: rgb(250, 250, 250);
 }
 
 input[type=text]:focus,
 input[type=password]:focus,
 input[type=date]:focus,
-input[type=email]:focus {
+input[type=email]:focus,
+textarea:focus {
     border-color: rgb(140, 140, 140)
 }
 
@@ -426,6 +446,72 @@ input[type=submit]:focus {
     background-color: rgb(230, 230, 230);
     border-color: rgb(50, 50, 50);
     color: black !important;
+}
+
+.custom_radio {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-right: 15px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.custom_radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.custom_radio .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: rgb(242, 242, 242);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--table-border-color);
+    border-radius: 50%;
+    transition: background-color 0.24s, border-color 0.24s;
+}
+
+.custom_radio:hover input~.checkmark {
+    background-color: rgb(250, 250, 250);
+    border-color: rgb(140, 140, 140);
+}
+
+.custom_radio input:checked~.checkmark {
+    background-color: rgb(235, 235, 235);
+    border-color: rgb(50, 50, 50);
+    cursor: default;
+}
+
+.custom_radio .checkmark:after {
+    content: "";
+    position: absolute;
+    transform-origin: 50% 50%;
+    transform: scale(0, 0);
+}
+
+.custom_radio input:checked~.checkmark:after {
+    transform: scale(1, 1);
+}
+
+.custom_radio .checkmark:after {
+    top: 8px;
+    left: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgb(50, 50, 50);
+    transition: transform 0.24s;
 }
 
 #error-msg,

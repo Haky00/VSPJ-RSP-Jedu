@@ -179,7 +179,7 @@ if (mysqli_num_rows($result)) {
         }
         echo "</div>";
 
-        $check_reviews = "SELECT * FROM recenze JOIN uzivatel ON recenze_recenzant = uzivatel_login WHERE recenze_prispevek = '{$id}'";
+        $check_reviews = "SELECT *, rec.uzivatel_jmeno as recenzent_jmeno, rec.uzivatel_prijmeni as recenzent_prijmeni, red.uzivatel_jmeno as redaktor_jmeno, red.uzivatel_prijmeni as redaktor_prijmeni FROM recenze JOIN uzivatel rec ON recenze_recenzant = rec.uzivatel_login JOIN uzivatel red ON recenze_redaktor = red.uzivatel_login WHERE recenze_prispevek = '{$id}'";
         $result = mysqli_query($db_connection, $check_reviews);
         if (mysqli_num_rows($result) > 0) {
             $i = 1;
@@ -201,8 +201,16 @@ if (mysqli_num_rows($result)) {
                     <td>Termín</td>
                     <td>{$radek['recenze_due_date']}</td>
                 </tr>
+                <tr>
+                    <td>Zadavatel</td>
+                    <td><a href='ucet.php?user={$radek['recenze_redaktor']}'>{$radek['redaktor_jmeno']} {$radek['redaktor_prijmeni']}</a></td>
+                </tr>
                 </table>";
             do {
+                $hodnoceni = "{$radek['recenze_hodnoceni_a']}/{$radek['recenze_hodnoceni_b']}/{$radek['recenze_hodnoceni_c']}/{$radek['recenze_hodnoceni_d']}";
+                if ($hodnoceni == "///") {
+                    $hodnoceni = "Nehodnoceno";
+                }
                 echo "
                 <h3>Recenze {$i}</h3>
                 <table>
@@ -212,20 +220,30 @@ if (mysqli_num_rows($result)) {
                 </colgroup>
                 <tr>
                     <td>Recenzent</td>
-                    <td><a href='ucet.php?user={$radek['recenze_recenzant']}'>{$radek['uzivatel_jmeno']} {$radek['uzivatel_prijmeni']}</a></td>
+                    <td><a href='ucet.php?user={$radek['recenze_recenzant']}'>{$radek['recenzent_jmeno']} {$radek['recenzent_prijmeni']}</a></td>
                 </tr>
                 <tr>
                     <td>Hodnocení</td>
-                    <td>{$radek['recenze_hodnoceni_a']}/{$radek['recenze_hodnoceni_b']}/{$radek['recenze_hodnoceni_c']}/{$radek['recenze_hodnoceni_d']}</td>
-                </tr>
-                <tr>
+                    <td>{$hodnoceni}</td>
+                </tr> ";
+                if (strlen($radek['recenze_text']) > 0) {
+                    echo "<tr>
                     <td>Text</td>
                     <td>{$radek['recenze_text']}</td>
-                </tr>
+                    </tr>";
+                }
+                echo "
                 </table>";
+                if ($radek["recenze_recenzant"] == $_SESSION["login"] && $radek["recenze_hodnoceni_a"] == 0) {
+                    echo "
+                        <div class='submit-center'>
+                        <a class='button' href='tvorba_recenze.php?id=" . $radek["recenze_id"] . "'>
+                        <div class='button-text-center'>Podat recenzi</div>
+                        </a>
+                        </div>";
+                }
                 $i = $i + 1;
-            }
-            while ($radek = mysqli_fetch_assoc($result));
+            } while ($radek = mysqli_fetch_assoc($result));
             echo "
             </div>
             </div>";

@@ -81,7 +81,7 @@ if (!isset($_SESSION["logged"]) || (isset($_GET['user']) && ($_GET['user'] != $_
                         <tr>
                             <td><label for='opravneni-field'>Role*</label></td>
                             <td>";
-            if ($_SESSION["opravneni"] == "Admin") {
+            if ($_SESSION["opravneni"] == "Admin" && $_SESSION["login"] != $login) {
                 echo "
                                 <div class='custom-select'>
                                     <select id='opravneni-field' name='opravneni' required>";
