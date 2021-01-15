@@ -11,7 +11,7 @@ if (!isset($_SESSION["logged"]) || ($_SESSION["opravneni"] != "Autor" && $_SESSI
 <html lang="cs">
 
 <head>
-
+    <title>Nový příspěvek</title>
     <?php require("components/common_head.php"); ?>
 
     <script>

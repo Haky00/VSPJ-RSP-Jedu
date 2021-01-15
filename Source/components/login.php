@@ -16,6 +16,8 @@ if(mysqli_num_rows($result) == 1)
     $_SESSION["logged"] = true;
     $_SESSION["opravneni"] = $data["uzivatel_opravneni"];
     $_SESSION["login"] = $data["uzivatel_login"];
+    $_SESSION["jmeno"] = $data["uzivatel_jmeno"];
+    $_SESSION["prijmeni"] = $data["uzivatel_prijmeni"];
     header('Location: ../index.php');
 }
 else

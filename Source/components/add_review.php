@@ -29,10 +29,14 @@ if ($_POST['recenzent1'] == $_POST['recenzent2']) {
     return;
 }
 
+$change_status = "UPDATE prispevek SET
+prispevek_status = 3 
+WHERE prispevek_id = '{$prispevek}'";
+mysqli_query($db_connection, $change_status);
+
 $sql = "INSERT INTO recenze(recenze_prispevek, recenze_redaktor, recenze_due_date, recenze_datum_zadani, recenze_recenzant) VALUES 
 ({$prispevek}, '{$_SESSION['login']}', '{$_POST['duedate']}', '" . date('Y-m-d') . "', '{$_POST['recenzent1']}'),
-({$prispevek}, '{$_SESSION['login']}', '{$_POST['duedate']}', '" . date('Y-m-d') . "', '{$_POST['recenzent2']}')
-";
+({$prispevek}, '{$_SESSION['login']}', '{$_POST['duedate']}', '" . date('Y-m-d') . "', '{$_POST['recenzent2']}')";
 
 
 if (mysqli_query($db_connection, $sql)) {

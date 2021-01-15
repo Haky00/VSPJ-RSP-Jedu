@@ -116,8 +116,51 @@ ul {
     list-style-position: inside;
 }
 
+.hero {
+    padding: 50px 0px;
+    background-image: url("resources/bg_pattern.png");
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.hero-text {
+    height: 60px;
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 3px;
+    background-color: rgb(240, 240, 240);
+    padding: 0 15px 0 0;
+    display: inline-block;
+    margin: 0;
+    line-height: 57px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    color: #222224;
+}
+
+.hero-text-gray {
+    color: #222224;
+}
+
+.hero-icon {
+    height: 60px;
+    width: 60px;
+    background-color: #ea2026;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+
+.hero-icon-svg {
+    width: 70%;
+    height: 70%;
+    vertical-align: middle;
+    fill: white;
+}
+
 .datatable {
     overflow-x: auto;
+    margin-bottom: 40px;
 }
 
 .datatable table {
@@ -664,10 +707,36 @@ input[type=submit]:focus {
 }
 
 .archiv-rocnik a {
-    margin: 0;
-    width: 56px;
+    margin: 4px 2px;
+    width: 26px;
+    height: 26px;
+    background-color: rgb(242, 242, 242);
+    border-color: var(--table-border-color);
+    border-width: 1px;
+    border-style: solid;
     display: inline-block;
     font-weight: normal;
+    text-decoration: none !important;
+    text-align: center;
+    border-radius: 7px;
+    transition: background-color 0.24s, border-color 0.24s, color 0.24s !important;
+}
+
+.archiv-rocnik a:hover {
+    background-color: rgb(250, 250, 250);
+    border-color: rgb(140, 140, 140);
+}
+
+.archiv-rocnik a:focus {
+    background-color: rgb(230, 230, 230);
+    border-color: rgb(50, 50, 50);
+    color: black !important;
+}
+
+.content-line {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(210, 210, 210);
 }
 
 .confirm,
@@ -748,5 +817,17 @@ input[type=submit]:focus {
     }
     .account-table {
         margin-left: 0;
+    }
+    .hero-text {
+        height: 50px;
+        font-size: 16pt;
+        letter-spacing: 2px;
+        padding: 0 12px 0 0;
+        line-height: 48px;
+    }
+    .hero-icon {
+        height: 50px;
+        width: 50px;
+        margin-right: 2px;
     }
 }

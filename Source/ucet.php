@@ -13,7 +13,7 @@ if (!isset($_SESSION["logged"])) {
 <html lang="cs">
 
 <head>
-
+    <title>Detail účtu</title>
     <?php require("components/common_head.php"); ?>
 
 </head>

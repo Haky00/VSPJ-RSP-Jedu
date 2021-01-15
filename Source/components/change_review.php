@@ -36,7 +36,8 @@ recenze_hodnoceni_a = {$h_a},
 recenze_hodnoceni_b = {$h_b}, 
 recenze_hodnoceni_c = {$h_c}, 
 recenze_hodnoceni_d = {$h_d},
-recenze_text = '{$text}'
+recenze_text = '{$text}',
+recenze_datum_recenze = '" .date('Y-m-d'). "' 
 WHERE recenze_id = {$id}";
 $recenze_query = trim(preg_replace('/\s+/', ' ', $recenze_query));
 

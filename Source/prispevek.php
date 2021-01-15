@@ -128,7 +128,7 @@ if (mysqli_num_rows($result)) {
 
         foreach ($texty as $t_id => $t_datum) {
             echo "<li>
-            <a href='display.php?id={$t_id}'>{$t_datum}</a>";
+            <a href='display.php?id={$t_id}'>".date_format(date_create($t_datum),"d. m. Y \\v H:i:s")."</a>";
             if ($_SESSION["opravneni"] == "Admin" || $autor == $_SESSION["login"]) {
                 echo "<a title='Smazat text' class='inline-button' href='confirm.php?msg=Opravdu chcete smazat text {$t_datum}?&yes=components/delete_text.php?id=" . $t_id . "&no=" . urlencode($_SERVER['REQUEST_URI']) . "'>✖</a>";
             }
@@ -145,6 +145,9 @@ if (mysqli_num_rows($result)) {
 
         <div class='submit-center'>
         ";
+
+        $check_reviews = "SELECT *, rec.uzivatel_jmeno as recenzent_jmeno, rec.uzivatel_prijmeni as recenzent_prijmeni, red.uzivatel_jmeno as redaktor_jmeno, red.uzivatel_prijmeni as redaktor_prijmeni FROM recenze JOIN uzivatel rec ON recenze_recenzant = rec.uzivatel_login JOIN uzivatel red ON recenze_redaktor = red.uzivatel_login WHERE recenze_prispevek = '{$id}'";
+        $result = mysqli_query($db_connection, $check_reviews);
 
         if ($autor == $_SESSION["login"]) {
             echo "
@@ -164,7 +167,7 @@ if (mysqli_num_rows($result)) {
             </a>";
         }
 
-        if ($_SESSION["opravneni"] == "Redaktor") {
+        if ($_SESSION["opravneni"] == "Redaktor" && mysqli_num_rows($result) == 0) {
             echo "
             <a class='button' href='volba_recenzentu.php?id=" . $id . "'>
             <div class='button-text-center'>Zvolit recenzenty</div>
@@ -179,8 +182,6 @@ if (mysqli_num_rows($result)) {
         }
         echo "</div>";
 
-        $check_reviews = "SELECT *, rec.uzivatel_jmeno as recenzent_jmeno, rec.uzivatel_prijmeni as recenzent_prijmeni, red.uzivatel_jmeno as redaktor_jmeno, red.uzivatel_prijmeni as redaktor_prijmeni FROM recenze JOIN uzivatel rec ON recenze_recenzant = rec.uzivatel_login JOIN uzivatel red ON recenze_redaktor = red.uzivatel_login WHERE recenze_prispevek = '{$id}'";
-        $result = mysqli_query($db_connection, $check_reviews);
         if (mysqli_num_rows($result) > 0) {
             $i = 1;
             $radek = mysqli_fetch_assoc($result);

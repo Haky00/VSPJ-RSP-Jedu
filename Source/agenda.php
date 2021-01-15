@@ -13,9 +13,8 @@ require('components/connect.php');
 <html lang="cs">
 
 <head>
-
+    <title>Moje agenda</title>
     <?php require("components/common_head.php"); ?>
-
     <script src="dropdown.js"></script>
 
 </head>
@@ -26,10 +25,12 @@ require('components/connect.php');
 
     <div id="main-content">
         <div class="content-section">
+            <h2>Vaše agenda</h2>
             <?php
             if ($_SESSION["opravneni"] == "Admin") {
                 echo "
-            <h2>Uživatelé</h2>
+            <div class='content-line'></div>
+            <h3>Uživatelé</h3>
             <div class='datatable'>
                 <table>
                     <thead>
@@ -83,7 +84,8 @@ require('components/connect.php');
                 }
                 $sql = $sql . " ORDER BY prispevek_zmena DESC";
                 echo "
-                <h2>Příspěvky</h2>
+                <div class='content-line'></div>
+                <h3>Příspěvky</h3>
                 <div class='datatable'>
                 <table>
                     <thead>
@@ -111,8 +113,10 @@ require('components/connect.php');
                                 <div class='more-button'>
                                     <a onclick=showDropDown('dropdown_prispevek_" . $radek["prispevek_id"] . "') class='more-button-link dropdown-button'><img class='table-button' src='resources/more.png'></a>
                                     <div class='dropdown-content' id='dropdown_prispevek_" . $radek["prispevek_id"] . "'>
-                                        <a href='prispevek.php?id=" . $radek["prispevek_id"] . "'>Detail</a>
-                                        <a href='upravit_prispevek.php?id=" . $radek["prispevek_id"] . "'>Upravit</a>";
+                                        <a href='prispevek.php?id=" . $radek["prispevek_id"] . "'>Detail</a>";
+                        if ($_SESSION["opravneni"] != "Šéfredaktor") {
+                            echo "<a href='upravit_prispevek.php?id=" . $radek["prispevek_id"] . "'>Upravit</a>";
+                        }
                         if ($_SESSION["opravneni"] == "Admin") {
                             echo "<a href='confirm.php?msg=Opravdu chcete smazat příspěvek {$radek["prispevek_nazev"]}?&yes=components/delete_paper.php?id=" . $radek["prispevek_id"] . "&no=" . urlencode($_SERVER['REQUEST_URI']) . "'>Smazat</a>";
                         }
@@ -143,7 +147,8 @@ require('components/connect.php');
                 }
                 $sql = $sql . " ORDER BY recenze_datum_zadani DESC";
                 echo "
-                <h2>Recenze</h2>
+                <div class='content-line'></div>
+                <h3>Recenze</h3>
                 <div class='datatable'>
                 <table>
                     <thead>

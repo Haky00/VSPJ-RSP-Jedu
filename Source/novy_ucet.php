@@ -13,7 +13,7 @@ if(isset($_SESSION["opravneni"]) && $_SESSION["opravneni"] != "Admin")
 <html lang="cs">
 
 <head>
-
+    <title>Nový uživatel</title>
     <?php require("components/common_head.php"); ?>
 
     <script>
