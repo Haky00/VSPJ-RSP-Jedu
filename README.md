@@ -1,7 +1,7 @@
 ﻿# Jedu LOGOS POLYTECHNIKOS
 ### Repozitář skupiny Jedu předmětu ŘSP, VŠPJ
 
-Zprovozněnou verzi můžete najít **[zde](https://alpha.kts.vspj.cz/~hak01/RSP/)**
+Zprovozněnou webovou verzi můžete najít **[zde](https://alpha.kts.vspj.cz/~hak01/RSP/)**
 
 ### Účty zprovozněné verze
 Následující účty existují v ukázkové verzi, jsou zapsané ve formě: **Oprávnění (login/heslo)**
@@ -28,9 +28,9 @@ Následující účty existují v ukázkové verzi, jsou zapsané ve formě: **O
 - V souboru **Source/components/connect.php** upravte údaje dle vaší databáze
 
 ### Provoz
-Registrovat účet s oprávěním Autor může kdokoli, ovšem vytvářet/přidělovat jiné role může pouze uživatel s rolí Admin. Vytvoření nového uživatele jako admin naleznete v záložce **Nový uživatel**, popř. můžete upravit již existující účet a roli přiřadit.
+Registrovat účet s oprávěním Autor může kdokoli, ovšem vytvářet/přidělovat jiné role může pouze uživatel s rolí Admin. Vytvoření nového uživatele jako admin naleznete v záložce **Nový uživatel**, popř. můžete upravit již existující účet a roli pouze přiřadit.
 
-Administrátorský účet je jediný, který dokáže mazat záznamy - např. příspěvky, uživatele.
+Administrátorský účet je jediný, který dokáže mazat záznamy (např. příspěvky) a uživatele.
 
 Pro vytvoření nových tématických čísel časopisu je třeba číslo manuálně zadat do databáze.
 
@@ -45,13 +45,13 @@ Pro vytvoření nového příspěvku zvolte položku **Nový příspěvek** v me
 Vámi vytvořené příspěvky můžete následně sledovat v záložce **Moje agenda**, kde také naleznete recenze svých příspěvků.
 
 ### Redaktor
-V záložce **Moje agenda** můžete nalézt všechny příspěvky, zadané do systému, a také vámi zadané recenze. Tyto příspěvky můžete prohlížet a upravovat, popř. také vybrat recenzenty, kteří tento příspěvek dostanou za úkol do určitého data zrecenzovat.
+V záložce **Moje agenda** můžete nalézt všechny příspěvky zadané do systému, a také vámi zadané recenze. Tyto příspěvky můžete prohlížet a upravovat, popř. také vybrat recenzenty, kteří tento příspěvek dostanou za úkol do určitého data zrecenzovat.
 
 ### Šéfredaktor
 V záložce **Moje agenda** uvidíte všechny příspěvky i recenze.
 
 ### Recenzent
-Redaktorem vám přidělené recenze uvidíte v záložce **Moje agenda**, u kterých také uvidíte k jakému příspěvku se vztahují. Příspěvek si můžete prohlédnout, a následně mu zadat hodnocení, pomocí možnosti **zvolit hodnocení** v detailu příspěvku, či v kontextovém menu v tabulkovém zobrazení.
+Redaktorem přidělené recenze uvidíte v záložce **Moje agenda**, u kterých také uvidíte k jakému příspěvku se vztahují. Příspěvek si můžete prohlédnout, a následně mu zadat hodnocení, pomocí možnosti **zvolit hodnocení** v detailu příspěvku, či v kontextovém menu v tabulkovém zobrazení.
   
   
 
