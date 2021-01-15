@@ -35,7 +35,7 @@ $prispevek_query = "UPDATE prispevek SET
 prispevek_nazev = '{$nazev}', 
 prispevek_spoluautori = '{$spoluautori}', 
 prispevek_tematicke_cislo = '{$cislo}'";
-if ($_SESSION["opravneni"] != autor) {
+if ($_SESSION["opravneni"] != "autor") {
     $prispevek_query = $prispevek_query . ", prispevek_status = '$status'";
 }
 $prispevek_query = $prispevek_query . " WHERE prispevek_id = '{$id}'";

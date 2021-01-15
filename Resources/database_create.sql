@@ -64,7 +64,7 @@ CREATE TABLE recenze(
 CREATE TABLE text(
     text_id SERIAL,
     text_prispevek BIGINT UNSIGNED NOT NULL,
-    text_datum_nahrani DATE NOT NULL,
+    text_datum_nahrani DATETIME NOT NULL,
     CONSTRAINT FOREIGN KEY (text_prispevek) REFERENCES prispevek(prispevek_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (text_id)
 );
