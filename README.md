@@ -1,60 +1,57 @@
 ﻿# VSPJ-RSP-Jedu
+##### Repozitář skupiny Jedu předmětu ŘSP, VSPJ.
 
-Repozitář skupiny Jedu předmětu ŘSP, VSPJ.
+Zprovozněná verze se nachází **[zde](https://alpha.kts.vspj.cz/~hak01/RSP/index.html)**
 
-Fungující verzi lze najít na následující adrese: https://alpha.kts.vspj.cz/~hak01/RSP/index.html
+### Účty zprovozněné verze
+Následující účty existují v ukázkové verzi, jsou zapsané ve formě: **Oprávnění (login/heslo)**
+- Admin (admin/admin)
+- Šéfredaktor (sefredaktor/sefredaktor)
+- Redaktor (redaktor/redaktor)
+- Recenzent (recenzent/recenzent)
+- Recenzent (recenzent2/recenzent2)
+- Autor (autor/autor)
+- Autor (autor2/autor2)
 
-Dokumentace k aplikaci týmu Jedu, verze 0112-2020:
+## Administrátorská dokumentace
 
-Role:
+### Požadavky na systém
+- **Apache** web server
+- **PHP** (alespoň verze 7.4)
+- **MySQ**L Databáze
+- RWX práva celému projektu
 
-Admin
+### Instalace
+- Ve své databázi vytvořte potřebné tabulky, SQL query pro vytvoření najdete v **Resources/database_create.sql**
+- V tabulce `uzivatel` manuálně vytvořte uživatele s oprávněním **admin**, pro vygenerování md5 hesla použijte např. http://www.md5.cz/
+- Přesuňte na svůj webový server celý obsah složky **Source**
+- V souboru **Source/components/connect.php** upravte údaje dle vaší databáze
 
-login: admin 
+### Provoz
+Registrovat účet s oprávěním Autor může kdokoli, ovšem vytvářet/přidělovat jiné role může pouze uživatel s rolí Admin. Vytvoření nového uživatele jako admin naleznete v menu, popř. můžete upravit již existující účet a roli přiřadit.
 
-heslo: admin
+Administrátorský účet je jediný, který dokáže mazat záznamy - např. příspěvky, uživatele.
 
-Adminova funkce je spravovat celou aplikaci, kontrolovat chování uživatelů, správa účtů a příspěvků.
+Pro vytvoření nových tématických čísel časopisu je třeba číslo manuálně zadat do databáze.
 
-Admin může jako jediný vytvářet účty s jinou rolí než je autor.
+## Uživatelská dokumentace
 
-Šéfredaktor
+Všechny role mají společnou záložku **Moje agenda**, ve které uvidí v tabulkové formě všechny jim relevantní informace.
 
-login: sefredaktor
+### Autor
+Pro vytvoření nového příspěvku zvolte položku **Nový příspěvek** v menu. Následně vyplňte detaily, můžete také nahrát první verzi svého textu.
+- *Text by měl být ve formátu .txt, jelikož je systém zobrazuje texty pouze v přímé textové formě*
 
-heslo: sefredaktor
+Vámi vytvořené příspěvky můžete následně sledovat v záložce **Moje agenda**, kde také naleznete recenze svých příspěvků.
 
-Šéfredaktorova funkce je správa/schválení příspěvků a recenzí, kontrola a komunikace s ostatními uživateli.
+### Redaktor
+V záložce **Moje agenda** můžete nalézt všechny příspěvky, zadané do systému, a také vámi zadané recenze. Tyto příspěvky můžete prohlížet a upravovat, popř. také vybrat recenzenty, kteří tento příspěvek dostanou za úkol do určitého data zrecenzovat.
 
-Redaktor
+### Šéfredaktor
+V záložce **Moje agenda** uvidite všechny příspěvky i recenze.
 
-login: redaktor
-
-heslo: redaktor
-
-Redaktorova funkce je přijetí článku od autora, případné schválení nebo navrácení článku autorovi. Schválení = publikace. Dále také volí recenzenty, tudíž může omezit, kteří recenzenti se na daný příspěvek hodí a budou ho moci hodnotit.
-
-Recenzent
-
-login: recenzent2 (recenzent)
-
-heslo: recenzent2 (recenzent)
-
-Recenzentova funkce je hodnocení příspěvků, které mu byly přiděleny redaktorem, pokud mu byl nějaký příspěvek přidělen, uvidí jej ve své agendě.
-
-Autor
-
-login: autor
-
-heslo: autor
-
-Autorova funkce je přidávat příspěvky, které jsou dále schváleny/odmítnuty redaktorem.
+### Recenzent
+Redaktorem vám přidělené recenze uvidíte v záložce **Moje agenda**, u kterých také uvidíte k jakému příspěvku se vztahují. Příspěvek si můžete prohlédnout, a následně mu zadat hodnocení, pomocí možnosti **zvolit hodnocení** v detailu příspěvku, či v kontextovém menu v tabulkovém zobrazení.
 
 
-Recenzent v této verzi aplikace nemůže příspěvky hodnotit!
-
-Redaktor ani šéfredaktor nemůže v této verzi aplikace schvalovat/odmítat příspěvky, může pouze volit vhodné recenzenty.
-
-Všechny role mají společnou záložku a tou je “MOJE AGENDA”, ve které jsou dostupné téměř všechny funkce, které daná role nabízí kromě správy účtu.
-
-Nevysvětlené funkce jsou self explanatory, ale i přesto, kdyby byly jakékoliv dotazy, můžete se obrátit na mě: mottl@student.vspj.cz jakožto product ownera.
+*Vytvořil tým Jedu*
