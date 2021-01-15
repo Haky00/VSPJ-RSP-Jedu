@@ -1,7 +1,7 @@
 ﻿# Jedu LOGOS POLYTECHNIKOS
 ### Repozitář skupiny Jedu předmětu ŘSP, VŠPJ
 
-Zprovozněnou verzi můžete najít **[zde](https://alpha.kts.vspj.cz/~hak01/RSP/index.html)**
+Zprovozněnou verzi můžete najít **[zde](https://alpha.kts.vspj.cz/~hak01/RSP/)**
 
 ### Účty zprovozněné verze
 Následující účty existují v ukázkové verzi, jsou zapsané ve formě: **Oprávnění (login/heslo)**
