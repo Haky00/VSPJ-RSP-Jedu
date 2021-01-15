@@ -4,6 +4,7 @@ $id = $_POST['id'];
 $nazev = $_POST['nazev'];
 $spoluautori = $_POST['spoluautori'];
 $cislo = $_POST['cislo'];
+$status = $_POST['status'];
 
 require('connect.php');
 
@@ -33,8 +34,11 @@ if (!$is_logged || (!$is_permitted && !$is_self)) {
 $prispevek_query = "UPDATE prispevek SET 
 prispevek_nazev = '{$nazev}', 
 prispevek_spoluautori = '{$spoluautori}', 
-prispevek_tematicke_cislo = '{$cislo}'
-WHERE prispevek_id = '{$id}'";
+prispevek_tematicke_cislo = '{$cislo}'";
+if ($_SESSION["opravneni"] != autor) {
+    $prispevek_query = $prispevek_query . ", prispevek_status = '$status'";
+}
+$prispevek_query = $prispevek_query . " WHERE prispevek_id = '{$id}'";
 $prispevek_query = trim(preg_replace('/\s+/', ' ', $prispevek_query));
 
 if (mysqli_query($db_connection, $prispevek_query)) {

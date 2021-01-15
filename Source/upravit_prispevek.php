@@ -16,6 +16,7 @@ if (mysqli_num_rows($result) != 1) {
 }
 $data = mysqli_fetch_assoc($result);
 $id = $_GET["id"];
+$status = $data["prispevek_status"];
 $nazev = $data["prispevek_nazev"];
 $cislo = $data["prispevek_tematicke_cislo"];
 $spoluautori = $data["prispevek_spoluautori"];
@@ -49,6 +50,31 @@ $spoluautori = $data["prispevek_spoluautori"];
                         <tr>
                             <td><label for="nazev-field">Název</label></td>
                             <td><input id="nazev-field" name="nazev" type="text" value="<?php echo $nazev; ?>" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="status-field">Status</label></td>
+                            <td>
+                            <?php
+                            if ($_SESSION["opravneni"] == "Autor") {
+                            echo "<input id='status-field' name='status' type='text' value='".$status."' required disabled>";
+                            }
+                            else {
+                                echo "<div class='custom-select'>
+                                <select id='status-field' name='status' style='width: 200px;'>";
+                                $options = ['Podáno','Vráceno z důvodu tematické nevhodnosti','Předáno recenzentům','Zamítnuto','Přijato s výhradami','Přijato'];
+                                $i = 1;
+                                foreach ($options as $option) {
+                                    echo "<option value='{$i}'";
+                                    if ($option == $status) {
+                                        echo " selected";
+                                    }
+                                    echo">{$option}</option>";
+                                    $i = $i + 1;
+                                }
+                                echo "</select></div>";
+                            }
+                            ?>
+                            </td>
                         </tr>
                         <tr>
                             <td><label for="cislo-field">Tématické číslo časopisu</label></td>

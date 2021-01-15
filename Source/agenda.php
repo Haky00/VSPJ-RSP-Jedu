@@ -104,11 +104,11 @@ require('components/connect.php');
                 if (mysqli_num_rows($result) > 0) {
                     while ($radek = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>" . $radek["prispevek_nazev"] . "</td>";
+                        echo "<td><a href='prispevek.php?id=" . $radek["prispevek_id"] . "'>" . $radek["prispevek_nazev"] . "</a></td>";
                         echo "<td><a href='ucet.php?user=" . $radek["prispevek_autor"] . "'>" . $radek["uzivatel_jmeno"] . " " . $radek["uzivatel_prijmeni"] . "</a></td>";
-                        echo "<td>" . $radek["prispevek_datum_vlozeni"]  . "</td>";
+                        echo "<td>".date_format(date_create($radek['prispevek_datum_vlozeni']),"d. m. Y")."</td>";
                         echo "<td>" . $radek["prispevek_status"] . "</td>";
-                        echo "<td>" . $radek["prispevek_zmena"] . "</td>";
+                        echo "<td>".date_format(date_create($radek['prispevek_zmena']),"d. m. Y \\v H:i:s")."</td>";
                         echo "<td class='button-cell'>
                                 <div class='more-button'>
                                     <a onclick=showDropDown('dropdown_prispevek_" . $radek["prispevek_id"] . "') class='more-button-link dropdown-button'><img class='table-button' src='resources/more.png'></a>

@@ -111,7 +111,7 @@ if (mysqli_num_rows($result)) {
                         </tr>
                         <tr>
                             <td>Datum vložení</td>
-                            <td>{$datum_vlozeni}</td>
+                            <td>".date_format(date_create($datum_vlozeni),"d. m. Y")."</td>
                         </tr>
                         <tr>
                             <td>Tématické číslo</td>
@@ -119,7 +119,7 @@ if (mysqli_num_rows($result)) {
                         </tr>
                         <tr>
                             <td>Poslední změna</td>
-                            <td>{$zmena}</td>
+                            <td>".date_format(date_create($zmena),"d. m. Y \\v H:i:s")."</td>
                         </tr>
                         <tr>
                             <td>Texty</td>
@@ -160,7 +160,7 @@ if (mysqli_num_rows($result)) {
             </form>";
         }
 
-        if ($autor == $_SESSION["login"] || $_SESSION["opravneni"] == "Admin") {
+        if ($autor == $_SESSION["login"] || $_SESSION["opravneni"] == "Admin" || $_SESSION["opravneni"] == "Redaktor") {
             echo "
             <a class='button' href='upravit_prispevek.php?id=" . $id . "'>
             <div class='button-text-center'>Upravit příspěvek</div>
@@ -196,11 +196,11 @@ if (mysqli_num_rows($result)) {
                 </colgroup>
                 <tr>
                     <td>Datum zadání</td>
-                    <td>{$radek['recenze_datum_zadani']}</td>
+                    <td>".date_format(date_create($radek['recenze_datum_zadani']),"d. m. Y")."</td>
                 </tr>
                 <tr>
                     <td>Termín</td>
-                    <td>{$radek['recenze_due_date']}</td>
+                    <td>".date_format(date_create($radek['recenze_due_date']),"d. m. Y")."</td>
                 </tr>
                 <tr>
                     <td>Zadavatel</td>
@@ -227,6 +227,12 @@ if (mysqli_num_rows($result)) {
                     <td>Hodnocení</td>
                     <td>{$hodnoceni}</td>
                 </tr> ";
+                if ($radek["recenze_hodnoceni_a"] > 0) {
+                    echo "<tr>
+                    <td>Datum recenze</td>
+                    <td>".date_format(date_create($radek['recenze_datum_recenze']),"d. m. Y")."</td>
+                    </tr> ";
+                }
                 if (strlen($radek['recenze_text']) > 0) {
                     echo "<tr>
                     <td>Text</td>
